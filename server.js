@@ -1,8 +1,9 @@
+/// <reference path="typings/node/node.d.ts"/>
 var express = require('express');
 var app = express();
 
 app.use('/', function (req, res) {
-    res.send(req.param('name'));
+    res.send('Hello World');
 });
 
 var port = process.env.PORT || 5000;
