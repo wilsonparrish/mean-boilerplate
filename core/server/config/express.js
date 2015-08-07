@@ -1,8 +1,11 @@
-var express = require('express'),
+// we require config file first!
+var config = require('./config.js'),
+    express = require('express'),
     morgan = require('morgan'),
     compress = require('compression'),
     bodyParser = require('body-parser'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    session = require('express-session');
 
 
 module.exports = function () {
@@ -28,6 +31,12 @@ module.exports = function () {
     app.use(bodyParser.json());
     app.use(methodOverride());
 
+    // another middleware, this time cookie support
+    app.use(session({
+        saveUninitialized: true,
+        resave: true,
+        secret: config.sessionSecret
+    }));
 
     // here we set our templating engine
     // careful! the route is with respect of server.js
@@ -42,7 +51,7 @@ module.exports = function () {
     app.use(express.static('./core/client/static'));
 
 
-    // we run the router object
+    // we run the router object giving it the express app
     require('../routes/index.server.routes.js')(app);
     return app;
 };
