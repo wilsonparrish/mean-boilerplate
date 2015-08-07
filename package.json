@@ -4,11 +4,12 @@
   "description": "This will be a fully wired  MEAN stack sample app.",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.13.3",
     "compression": "^1.5.2",
+    "body-parser": "^1.13.3",
+    "ejs": "^2.3.3",
     "express": "^4.13.3",
-    "morgan": "^1.6.1",
-    "method-override": "^2.3.5"
+    "method-override": "^2.3.5",
+    "morgan": "^1.6.1"
   },
   "devDependencies": {},
   "scripts": {

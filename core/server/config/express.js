@@ -29,6 +29,12 @@ module.exports = function () {
     app.use(methodOverride());
 
 
+    // here we set our templating engine
+    // careful! the route is with respect of server.js
+    app.set('views', './core/server/views');
+    app.set('view engine', 'ejs');
+
+
     // we run the router object
     require('../routes/index.server.routes.js')(app);
     return app;
