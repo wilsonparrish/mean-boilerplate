@@ -38,7 +38,7 @@ module.exports = function () {
     // aquí configuramos los archivos estáticos
     // OJO que hay que ponerlo después del rendering engine
     // la ruta para enlazar los recursos en las plantillas
-    // empieza a partir de static
+    // empieza a partir de la carpeta static
     app.use(express.static('./core/client/static'));
 
 
