@@ -1,0 +1,29 @@
+{
+  "name": "mean-boilerplate",
+  "version": "0.0.1",
+  "description": "lean mean boilerplate code",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ladrillo/mean-boilerplate.git"
+  },
+  "keywords": [
+    "lean",
+    "mean",
+    "boilerplate"
+  ],
+  "author": "Gabriel Cabrejas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ladrillo/mean-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Ladrillo/mean-boilerplate#readme"
+}
