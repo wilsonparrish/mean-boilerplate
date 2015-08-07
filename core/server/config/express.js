@@ -35,6 +35,13 @@ module.exports = function () {
     app.set('view engine', 'ejs');
 
 
+    // aquí configuramos los archivos estáticos
+    // OJO que hay que ponerlo después del rendering engine
+    // la ruta para enlazar los recursos en las plantillas
+    // empieza a partir de static
+    app.use(express.static('./core/client/static'));
+
+
     // we run the router object
     require('../routes/index.server.routes.js')(app);
     return app;
