@@ -1,10 +1,14 @@
 {
   "name": "mean-boilerplate",
-  "version": "0.0.1",
-  "description": "lean mean boilerplate code",
+  "version": "1.0.0",
+  "description": "This will be a fully wired  MEAN stack sample app.",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.13.3",
+    "compression": "^1.5.2",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1",
+    "method-override": "^2.3.5"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,13 +19,8 @@
     "type": "git",
     "url": "git+https://github.com/Ladrillo/mean-boilerplate.git"
   },
-  "keywords": [
-    "lean",
-    "mean",
-    "boilerplate"
-  ],
-  "author": "Gabriel Cabrejas",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ladrillo/mean-boilerplate/issues"
   },
