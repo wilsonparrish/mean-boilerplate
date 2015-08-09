@@ -1,6 +1,7 @@
 // we require config file first!
 var config = require('./config.js'),
     express = require('express'),
+    cors = require('cors'),
     morgan = require('morgan'),
     compress = require('compression'),
     bodyParser = require('body-parser'),
@@ -24,6 +25,7 @@ module.exports = function () {
 
 
     // this middleware will work no matter the environment
+    app.use(cors()); // disable this if this server is not for api
     app.use(bodyParser.urlencoded(
         {
             extended: true
@@ -43,12 +45,12 @@ module.exports = function () {
     app.set('views', './core/server/views');
     app.set('view engine', 'ejs');
 
-
+    // THIS WILL BE ANGULAR APP
     // aquí configuramos los archivos estáticos
     // OJO que hay que ponerlo después del rendering engine
     // la ruta para enlazar los recursos en las plantillas
     // empieza a partir de la carpeta static
-    app.use(express.static('./core/client/static'));
+    app.use(express.static('./core/client'));
 
 
     // we run the router object giving it the express app
