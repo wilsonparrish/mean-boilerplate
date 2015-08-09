@@ -18,7 +18,7 @@ exports.destroySession = function (req, res) {
 };
 
 exports.angularApp = function (req, res) {
-    // this controller renders the Angular app
+    // this controller renders the Angular home page
     // we need to configure the root of static resources
     // to be this directory as well, in express.js
     res.sendFile('index.html', { root: 'core/client' });
