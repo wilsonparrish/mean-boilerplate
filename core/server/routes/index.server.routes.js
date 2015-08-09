@@ -1,6 +1,6 @@
-module.exports = function (app) {
-    var controller = require('../controllers/index.server.controller');
+var controller = require('../controllers/index.server.controller');
 
+module.exports = function (app) {
     app.route('/')
         .get(controller.angularApp);
 

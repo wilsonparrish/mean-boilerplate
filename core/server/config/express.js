@@ -33,6 +33,7 @@ module.exports = function () {
     app.use(bodyParser.json());
     app.use(methodOverride());
 
+
     // another middleware, this time cookie support
     app.use(session({
         saveUninitialized: true,
@@ -40,10 +41,12 @@ module.exports = function () {
         secret: config.sessionSecret
     }));
 
+
     // here we set our templating engine
     // careful! the route is with respect of server.js
     app.set('views', './core/server/views');
     app.set('view engine', 'ejs');
+
 
     // THIS WILL BE ANGULAR APP
     // aquí configuramos los archivos estáticos
@@ -53,7 +56,10 @@ module.exports = function () {
     app.use(express.static('./core/client'));
 
 
-    // we run the router object giving it the express app
+    // HERE WE INCLUDE THE ROUTES
+    // we run the router objects giving them the express app
     require('../routes/index.server.routes.js')(app);
+    require('../routes/users.server.routes.js')(app);
+
     return app;
 };
