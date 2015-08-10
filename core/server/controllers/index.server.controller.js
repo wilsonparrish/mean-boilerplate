@@ -11,11 +11,13 @@ exports.testView = function (req, res) {
     });
 };
 
+
 exports.destroySession = function (req, res) {
     // this will clean the cookie
     req.session.destroy();
     res.send('Session destroyed!');
 };
+
 
 exports.angularApp = function (req, res) {
     // this controller renders the Angular home page

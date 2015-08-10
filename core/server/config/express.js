@@ -1,4 +1,4 @@
-// we require config file first!
+// we require the config file first!
 var config = require('./config.js'),
     express = require('express'),
     cors = require('cors'),
