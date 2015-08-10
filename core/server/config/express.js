@@ -1,3 +1,4 @@
+// EXPRESS CONFIGURATION FILE
 // we require the config file first!
 var config = require('./config.js'),
     express = require('express'),
@@ -14,8 +15,7 @@ module.exports = function () {
     var app = express();
 
 
-    // block of added environment dependant middleware
-    // not sure if it works with heroku like this
+    // Environment-dependant middleware
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
     }
@@ -24,7 +24,7 @@ module.exports = function () {
     }
 
 
-    // this middleware will work no matter the environment
+    // this middleware will run no matter the environment
     app.use(cors()); // disable this if this server is not for api
     app.use(bodyParser.urlencoded(
         {
@@ -34,7 +34,7 @@ module.exports = function () {
     app.use(methodOverride());
 
 
-    // another middleware, this time cookie support
+    // cookie support
     app.use(session({
         saveUninitialized: true,
         resave: true,
@@ -43,16 +43,16 @@ module.exports = function () {
 
 
     // here we set our templating engine
-    // careful! the route is with respect of server.js
+    // route is relative to server.js
     app.set('views', './core/server/views');
     app.set('view engine', 'ejs');
 
 
     // THIS WILL BE ANGULAR APP
-    // aquí configuramos los archivos estáticos
-    // OJO que hay que ponerlo después del rendering engine
-    // la ruta para enlazar los recursos en las plantillas
-    // empieza a partir de la carpeta static
+    // here we set the static files folder
+    // needs to come after setting the rendering engine
+    // the route to link to static resources from our
+    // website will start at 'assets'; see index.ejs
     app.use(express.static('./core/client'));
 
 

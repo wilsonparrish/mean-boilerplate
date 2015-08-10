@@ -1,3 +1,4 @@
+// here we handle actions for specific routes and verbs
 var User = require('mongoose').model('User');
 
 

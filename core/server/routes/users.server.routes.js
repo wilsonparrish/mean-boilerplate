@@ -1,3 +1,4 @@
+// routes of our RESTful API
 var usersController = require('../controllers/users.server.controller');
 
 module.exports = function (app) {

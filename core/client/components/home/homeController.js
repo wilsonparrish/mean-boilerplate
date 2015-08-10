@@ -3,7 +3,7 @@
 
     angular.module('app')
         .controller('homeController', function ($scope) {
-            $scope.test = "test";
+            $scope.test = "If you see this Angular is working!";
         });
 
 
