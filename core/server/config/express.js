@@ -7,7 +7,9 @@ var config = require('./config.js'),
     compress = require('compression'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    session = require('express-session');
+    session = require('express-session'),
+    flash = require('connect-flash'),
+    passport = require('passport');
 
 
 module.exports = function () {
@@ -48,18 +50,24 @@ module.exports = function () {
     app.set('view engine', 'ejs');
 
 
-    // THIS WILL BE ANGULAR APP
-    // here we set the static files folder
-    // needs to come after setting the rendering engine
-    // the route to link to static resources from our
-    // website will start at 'assets'; see index.ejs
-    app.use(express.static('./core/client'));
+    // here we register flash and passport
+    app.use(flash());
+    app.use(passport.initialize());
+    app.use(passport.session());
 
 
     // HERE WE INCLUDE THE ROUTES
     // we run the router objects giving them the express app
     require('../routes/index.server.routes.js')(app);
     require('../routes/users.server.routes.js')(app);
+
+
+    // THIS WILL BE ANGULAR APP
+    // here we set the static files folder
+    // needs to come after setting the rendering engine
+    // the route to link to static resources from our
+    // website will start at 'assets'; see index.ejs
+    app.use(express.static('./core/client'));
 
     return app;
 };
