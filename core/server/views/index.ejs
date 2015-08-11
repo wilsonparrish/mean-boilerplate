@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <head>
+        <meta charset="UTF-8">
         <title>
-            <%=t itle %>
+            <%=title %>
         </title>
     </head>
 
     <body>
-        <% if ( userFullName ) { %>
-            <h2>Hello
-                <%=userFullName%>
-            </h2>
-            <a href="/signout">Sign out</a>
-            <% } else { %>
-                <a href="/signup">Signup</a>
-                <a href="/signin">Signin</a>
-                <% } %>
-                    <br>
-                    <img src="img/logo.png" alt="Logo">
+        <h3>
+            <%=title %>
+        </h3>
+        <h5>This is a static asset:</h5>
+        <img src="assets/img/logowhiteblue.png">
     </body>
 
 </html>

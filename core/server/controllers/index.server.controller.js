@@ -1,4 +1,3 @@
-// general actions
 exports.testView = function (req, res) {
     // we are testing our cookies here...
     if (req.session.lastVisit) {
@@ -25,12 +24,4 @@ exports.angularApp = function (req, res) {
     // we need to configure the root of static resources
     // to be this directory as well, in express.js
     res.sendFile('index.html', { root: 'core/client' });
-};
-
-
-exports.render = function (req, res) {
-    res.render('index', {
-        title: 'Hello World',
-        userFullName: req.user ? req.user.fullName : ''
-    });
 };
