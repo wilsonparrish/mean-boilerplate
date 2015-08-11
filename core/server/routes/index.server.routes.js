@@ -1,3 +1,4 @@
+// some general routes
 var controller = require('../controllers/index.server.controller');
 
 module.exports = function (app) {

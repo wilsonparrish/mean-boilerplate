@@ -1,49 +1,76 @@
-// here we handle actions for specific routes and verbs
-var User = require('mongoose').model('User');
+// actions related with authentication
+var User = require('mongoose').model('User'),
+    passport = require('passport');
 
 
-exports.postUser = function (req, res, next) {
-    var user = new User(req.body);
-    user.save(function (err) {
-        if (err) res.send(err);
-        else res.json(user);
-    });
-};
-
-
-exports.getUsers = function (req, res) {
-    User.find(function (err, users) {
-        if (err) res.send(err);
-        else res.json(users);
-    });
-};
-
-
-exports.getUser = function (req, res) {
-    User.findById(req.params.user_id, function (err, user) {
-        if (err) res.send(err);
-        else res.json(user);
-    });
-};
-
-
-exports.putUser = function (req, res) {
-    User.findById(req.params.user_id, function (err, user) {
-        if (err) res.send(err);
-        else {
-            user.firstName = req.body.firstName;
-            user.save(function (err) {
-                if (err) res.send(err);
-                else res.json({ 'message': 'user updated!' });
-            });
+var getErrorMessage = function (err) {
+    var message = '';
+    if (err.code) {
+        switch (err.code) {
+            case 11000:
+            case 11001:
+                message = 'Username already exists';
+                break;
+            default:
+                message = 'Something went wrong';
         }
-    });
+    } else {
+        for (var errName in err.errors) {
+            if (err.errors[errName].message) message = err.errors[errName].
+                message;
+        }
+    }
+    return message;
 };
 
 
-exports.deleteUser = function (req, res) {
-    User.remove({ _id: req.params.user_id }, function (err, user) {
-        if (err) res.send(err);
-        else res.json({ 'message': 'user deleted!' });
-    });
+exports.renderSignin = function (req, res, next) {
+    if (!req.user) {
+        res.render('signin', {
+            title: 'Sign-in Form',
+            messages: req.flash('error') || req.flash('info')
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+
+exports.renderSignup = function (req, res, next) {
+    if (!req.user) {
+        res.render('signup', {
+            title: 'Sign-up Form',
+            messages: req.flash('error')
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+
+exports.signup = function (req, res, next) {
+    if (!req.user) {
+        var user = new User(req.body);
+        var message = null;
+        user.provider = 'local';
+        user.save(function (err) {
+            if (err) {
+                var message = getErrorMessage(err);
+                req.flash('error', message);
+                return res.redirect('/signup');
+            }
+            req.login(user, function (err) {
+                if (err) return next(err);
+                return res.redirect('/');
+            });
+        });
+    } else {
+        return res.redirect('/');
+    }
+};
+
+
+exports.signout = function (req, res) {
+    req.logout();
+    res.redirect('/');
 };
